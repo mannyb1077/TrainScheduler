@@ -1,0 +1,13 @@
+body
+{
+    background-image: url("../images/trainStation1.jpeg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+#time-display
+{
+    margin-right: 5px;
+    margin-bottom: 5px;
+    color: white;
+}
