@@ -41,6 +41,8 @@ var config =
     $("#train-start-input").val("");
     $("#train-frequency-input").val("");
 
+    closeForm()
+
     alert("Train successfully added");
 
   });
@@ -61,17 +63,18 @@ var config =
       // console.log("This is Receiving Train Start from Firebase " + trainStartTime);
       // console.log("This is Receiving Train Frequency from Firebase " + trainFrequency);
 
-    //Current Time
+    //Current Local Time
     function Time() 
     {
       var current = moment().format('LT');
       timeDisplay = current;
 
       $("#time-display").text("Local Time: " + timeDisplay);
+      
+      setInterval(Time, 1000);
     }
-    Time()
 
-    // Test Code
+    Time()
 
      // Train Start Time (pushed back 1 year to make sure it comes before current time)
      console.log("trainStartTime = " + trainStartTime);
@@ -92,7 +95,7 @@ var config =
     console.log("Time remaining in Seconds = " + timeRemaining);
 
     // Minutes Until Next Train
-    var minutesAway = trainFrequency - timeRemaining;
+    minutesAway = trainFrequency - timeRemaining;
     console.log("Minutes Away Until Next Train = " + minutesAway);
 
     // Next Arrival
@@ -100,9 +103,7 @@ var config =
     nextArrival = moment(nextTrain).format("HH:mm");
     console.log("Next Train in Seconds = " + nextTrain);
     console.log("Next Train arrives at: " + nextArrival);
- 
-      
-    
+          
       // New Row to Display information from firebase
     var newRow = $("<tr>").append
     (
@@ -119,5 +120,21 @@ var config =
     // Append the new row to the table
     $("#train-table > tbody").append(newRow);
 
+  });
+
+  function closeForm() 
+  {
+    //$(".modal-content.animate").close();
+    console.log("This is supposed to close the Form");
+    // //form.close();
+    // close(form);
+  }
+  
+  $(".cancelbtn, .close").on("click", function() 
+  {
+    $("#train-name-input").val("");
+    $("#train-destination-input").val("");
+    $("#train-start-input").val("");
+    $("#train-frequency-input").val("");
   });
 
