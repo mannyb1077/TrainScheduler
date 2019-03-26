@@ -12,8 +12,11 @@ var config =
 
   var database = firebase.database();
 
+  Time()
+
   $("#add-train-button").on("click", function(event) 
   {
+    
     event.preventDefault();
     
     var trainName = $("#train-name-input").val().trim();
@@ -28,22 +31,27 @@ var config =
       frequency: trainFrequency
     };
 
-    database.ref().push(newTrain);
+    if (trainName == "" || trainDestination == "" || trainStartTime == "" || trainFrequency == "")
+    {
+      alert("Please do not leave any empty fields");
+    }
+    else
+    {
+      database.ref().push(newTrain);
 
-    //Info to firebase
-    console.log("This is Pushing Train Name to Firebase: " + newTrain.name);
-    console.log("This is Pushing Train Destination to Firebase: " + newTrain.destination);
-    console.log("This is Pushing to First Train Start to Firebase: " + newTrain.start);
-    console.log("This is Pushing to Train Frequency to Firebase: " + newTrain.frequency);
+      //Info to firebase
+      console.log("This is Pushing Train Name to Firebase: " + newTrain.name);
+      console.log("This is Pushing Train Destination to Firebase: " + newTrain.destination);
+      console.log("This is Pushing to First Train Start to Firebase: " + newTrain.start);
+      console.log("This is Pushing to Train Frequency to Firebase: " + newTrain.frequency);
 
-    $("#train-name-input").val("");
-    $("#train-destination-input").val("");
-    $("#train-start-input").val("");
-    $("#train-frequency-input").val("");
+      closeForm()
 
-    closeForm()
+      alert(trainName + " Train successfully added");
+      
+    }
 
-    alert("Train successfully added");
+    
 
   });
 
@@ -63,27 +71,15 @@ var config =
       // console.log("This is Receiving Train Start from Firebase " + trainStartTime);
       // console.log("This is Receiving Train Frequency from Firebase " + trainFrequency);
 
-    //Current Local Time
-    function Time() 
-    {
-      var current = moment().format('LT');
-      timeDisplay = current;
 
-      $("#time-display").text("Local Time: " + timeDisplay);
-      
-      setInterval(Time, 1000);
-    }
-
-    Time()
-
-     // Train Start Time (pushed back 1 year to make sure it comes before current time)
+     // Train Start Time (-1 year to make sure it comes before current time)
      console.log("trainStartTime = " + trainStartTime);
      var trainStartTimeConverted = moment(trainStartTime, "hh:mm").subtract(1, "years");
      console.log("startTimeConverted to seconds = " + trainStartTimeConverted);
 
       // Current Time
     var currentTime = moment();
-    console.log("currentTime in seconds = " + currentTime);
+    console.log("currentTime in Minutes = " + currentTime);
 
     // Time difference between trainStartTime and currentTime
     var timeDifference = moment().diff(moment(trainStartTimeConverted), "minutes");
@@ -92,7 +88,7 @@ var config =
     // Time remaining
     console.log("trainFrequency = " + trainFrequency);
     var timeRemaining = timeDifference % trainFrequency;
-    console.log("Time remaining in Seconds = " + timeRemaining);
+    console.log("Time remaining in Minutes = " + timeRemaining);
 
     // Minutes Until Next Train
     minutesAway = trainFrequency - timeRemaining;
@@ -101,7 +97,12 @@ var config =
     // Next Arrival
     var nextTrain = moment().add(minutesAway, "minutes");
     nextArrival = moment(nextTrain).format("HH:mm");
-    console.log("Next Train in Seconds = " + nextTrain);
+    if (nextArrival == "00:00")
+    {
+      nextArrival = "12:00"
+    }
+
+    console.log("Next Train in Minutes = " + nextTrain);
     console.log("Next Train arrives at: " + nextArrival);
           
       // New Row to Display information from firebase
@@ -110,11 +111,10 @@ var config =
       $("<td>").text(trainName),
       $("<td>").text(trainDestination),
       $("<td>").text(trainFrequency + " minutes"),
-      //$("<td>").text("Sooner Than You Think"),
       $("<td>").text(nextArrival),
-      //$("<td>").text("Be Patient!"),
       $("<td>").text(minutesAway + " minutes")
-      
+      //$("<td>").text("Sooner Than You Think"),
+      //$("<td>").text("Be Patient!"),
     );
   
     // Append the new row to the table
@@ -122,19 +122,33 @@ var config =
 
   });
 
-  function closeForm() 
+  //Current Local Time
+  function Time() 
   {
-    //$(".modal-content.animate").close();
-    console.log("This is supposed to close the Form");
-    // //form.close();
-    // close(form);
+    var current = moment().format('LT');
+    timeDisplay = current;
+    
+    $("#time-display").text("Local Time: " + timeDisplay);
+    setInterval(Time, 1000);
+     
   }
-  
-  $(".cancelbtn, .close").on("click", function() 
+
+  function clearFormInputs()
   {
     $("#train-name-input").val("");
     $("#train-destination-input").val("");
     $("#train-start-input").val("");
     $("#train-frequency-input").val("");
+  }
+
+  function closeForm() 
+  {
+    clearFormInputs()
+    modal.style.display = "none";
+  }
+  
+  $(".cancelbtn, .close").on("click", function() 
+  {
+    clearFormInputs()
   });
 
