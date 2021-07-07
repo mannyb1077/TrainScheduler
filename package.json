@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/mannyb1077/Shake-A-Dice/issues"
   },
-  "homepage": "https://github.com/mannyb1077/Shake-A-Dice#readme"
+  "homepage": "https://github.com/mannyb1077/Shake-A-Dice#readme",
+  "dependencies": {
+    "firebase": "^8.7.0"
+  }
 }

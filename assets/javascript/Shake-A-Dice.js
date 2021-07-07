@@ -1,7 +1,7 @@
 var config = 
 {  
     apiKey: "AIzaSyCapFci4yRVZUDk1L5t2EEn1z9uLj-7UOA",
-    authDomain: "shake-a-dice.firebaseapp.com",
+    authDomain: "https://shake-a-dice.firebaseapp.com",
     databaseURL: "https://shake-a-dice-default-rtdb.firebaseio.com/",
     projectId: "shake-a-dice",
     storageBucket: "shake-a-dice.appspot.com",
@@ -14,7 +14,7 @@ var config =
 
   Time()
 
-  $("#add-train-button").on("click", function(event) 
+  $("#add-winner-button").on("click", function(event) 
   {
     
     event.preventDefault();
