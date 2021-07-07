@@ -38,24 +38,22 @@
   <div class="container">
 
     <div class="jumbotron" style="background-color: grey; color: white">
-      <h1 class="text-center">Any Time is Train Time</h1>
-      <h3 class="text-center">Choo Choo. chee Chee.</h3>
+      <h1 class="text-center">Shake-A-Dice</h1>
+      <h3 class="text-center">Good Luck!</h3>
     </div>
     <p class="text-right" id = "time-display" placeholder="Time goes Here"></p>
 
     <div class="row">
       <div class="col-md-12">
         <div class="card mb-5">
-          <div class="card-header">Current Train Schedule</div>
+          <div class="card-header">Winners Circle</div>
            <div class="card-body">
-            <table class="table table-sm table-hover" id='train-table'>
+            <table class="table table-sm table-hover" id='winner-table'>
               <thead>
                 <tr>
-                  <th scope="col">Train Name</th>
-                  <th scope="col">Destination</th>
-                  <th scope="col">Frequency (mins)</th>
-                  <th scope="col">Arrival Time</th>
-                  <th scope="col">Train Arrives in:</th>
+                  <th scope="col">Winner Name</th>
+                  <th scope="col">Amount</th>
+                  <th scope="col">Date</th>
                 </tr>
               </thead>
               <tbody>
@@ -80,26 +78,23 @@
       <div class="container">
    
         <div class="form-group">
-          <label for="name-input">Train Name</label>
-          <input class="form-control" id="train-name-input" placeholder="Silver Bullet" type="text">
+          <label for="name-input">Winner Name</label>
+          <input class="form-control" id="winner-name-input" placeholder="Silver Bullet" type="text">
         </div>
 
         <div class="form-group">
-          <label for="role-input">Destination</label>
-          <input class="form-control" id="train-destination-input" placeholder="Salt Lake City" type="text">
+          <label for="role-input">Amount</label>
+          <input class="form-control" id="winner-amount-input" placeholder="ATI" type="text">
         </div>
 
         <div class="form-group">
-              <label for="start-input">First Train Start Time (hh:mm - Military Time)</label>
-              <input class="form-control" id="train-start-input" placeholder="19:00" type="text">
+              <label for="date-input">Date (mm/dd/yyyy )</label>
+              <input class="form-control" id="winner-date-input" placeholder="" type="text">
         </div>
 
-        <div class="form-group">
-              <label for="frequency-input">Frequency (minutes)</label>
-              <input class="form-control" id="train-frequency-input" placeholder="25" type="text">
-        </div>
+        
 
-        <button class="btn btn-primary" id="add-train-button">Submit</button>
+        <button class="btn btn-primary" id="add-winner-button">Submit</button>
           
       </div>
   
@@ -126,7 +121,7 @@
   
   <footer>
     <div class = "footerDiv">
-      <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Add New Train Schedule</button>
+      <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Add New Winner</button>
     </div> 
   </footer>
 
