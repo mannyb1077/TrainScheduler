@@ -17,10 +17,11 @@
   "author": "Manny Barboza",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mannyb1077/Shake-A-Dice/issues"
+    "url": "https://shake-a-dice-default-rtdb.firebaseio.com/"
   },
-  "homepage": "https://github.com/mannyb1077/Shake-A-Dice#readme",
+  "homepage": "https://shake-a-dice-default-rtdb.firebaseio.com/",
   "dependencies": {
-    "firebase": "^8.7.0"
+    "firebase": "^8.7.0",
+    "firebase-tools": "^9.14.0"
   }
 }
